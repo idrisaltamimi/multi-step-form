@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  color: #022959;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  background-color: #EFF5FF;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.textfield:invalid~span {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  #root {
+    display: grid;
+    place-items: center;
+  }
+}
