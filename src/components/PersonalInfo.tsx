@@ -1,11 +1,11 @@
 import { ChangeEvent, FC, SetStateAction } from 'react'
-import { data } from '../App'
+import { dataType } from '../App'
 
 import TextField from './TextField'
 
 interface Props {
   setState: SetStateAction<any>
-  state: data
+  state: dataType
 }
 
 const PersonalInfo: FC<Props> = ({
