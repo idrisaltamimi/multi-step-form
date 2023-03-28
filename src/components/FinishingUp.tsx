@@ -28,21 +28,20 @@ const FinishingUp: FC<Props> = ({ setStep, state }) => {
           </p>
         </div>
 
-        {totalAddons > 0 &&
-          <>
-            <hr className='my-3 border-grey' />
+        {totalAddons > 0 && <hr className='my-3 border-grey' />}
 
-            <div className='flex flex-col gap-3'>
-              {state.addons.map(({ id, name, addedAmount, isChecked }) => (
-                <div key={id} className='flex items-center text-[14px] leading-5 text-grey'>
-                  {name}
-                  <span className='ml-auto text-denim'>
-                    {state.isMonthly ? `+$${addedAmount}/mo` : `+$${addedAmount * 10}/yr`}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </>}
+        <div className='flex flex-col gap-3'>
+          {state.addons.map(({ id, name, addedAmount, isChecked }) => (
+            <>
+              {isChecked && <div key={id} className='flex items-center text-[14px] leading-5 text-grey'>
+                {name}
+                <span className='ml-auto text-denim'>
+                  {state.isMonthly ? `+$${addedAmount}/mo` : `+$${addedAmount * 10}/yr`}
+                </span>
+              </div>}
+            </>
+          ))}
+        </div>
 
       </div>
       <div className='p-4 flex items-center text-grey text-[14px] leading-20'>
