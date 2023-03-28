@@ -8,7 +8,7 @@ interface Props {
 }
 
 const FinishingUp: FC<Props> = ({ setStep, state }) => {
-  const totalAmount = state.addons.reduce((acc, curr) => acc + curr.addedAmount, 0) + state.planPrice
+  const totalAddons = state.addons.reduce((acc, curr) => acc + (curr.isChecked ? curr.addedAmount : 0), 0)
 
   return (
     <>
@@ -28,24 +28,27 @@ const FinishingUp: FC<Props> = ({ setStep, state }) => {
           </p>
         </div>
 
-        <hr className='my-3 border-grey' />
+        {totalAddons > 0 &&
+          <>
+            <hr className='my-3 border-grey' />
 
-        <div className='flex flex-col gap-3'>
-          {state.addons.map(({ id, name, addedAmount }) => (
-            <div key={id} className='flex items-center text-[14px] leading-5 text-grey'>
-              {name}
-              <span className='ml-auto text-denim'>
-                {state.isMonthly ? `+$${addedAmount}/mo` : `+$${addedAmount * 10}/yr`}
-              </span>
+            <div className='flex flex-col gap-3'>
+              {state.addons.map(({ id, name, addedAmount, isChecked }) => (
+                <div key={id} className='flex items-center text-[14px] leading-5 text-grey'>
+                  {name}
+                  <span className='ml-auto text-denim'>
+                    {state.isMonthly ? `+$${addedAmount}/mo` : `+$${addedAmount * 10}/yr`}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>}
 
       </div>
       <div className='p-4 flex items-center text-grey text-[14px] leading-20'>
         Total (per {state.isMonthly ? 'month' : 'year'})
         <span className='ml-auto text-[16px] font-bold text-purple'>
-          {state.isMonthly ? `+$${totalAmount}/mo` : `+$${totalAmount * 10}/yr`}
+          {state.isMonthly ? `+$${totalAddons + state.planPrice}/mo` : `+$${(totalAddons + state.planPrice) * 10}/yr`}
         </span>
       </div>
     </>

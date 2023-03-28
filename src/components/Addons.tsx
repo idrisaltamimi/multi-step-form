@@ -35,7 +35,6 @@ const Addons: FC<Props> = ({ setState, state }) => {
             checked={el.isChecked}
             onChange={handleChange}
             className='appearance-none'
-            required
           />
           <img
             src={checkmark}
