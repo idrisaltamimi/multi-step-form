@@ -10,11 +10,11 @@ interface Props {
 
 const Addons: FC<Props> = ({ setState, state }) => {
   const handleChange = (e: ChangeEvent) => {
-    const { name } = e.target as HTMLInputElement
+    const { value } = e.target as HTMLInputElement
 
     setState((prev: any) => {
       const addons = prev.addons.map((el: AddonsType) => (
-        name === el.name ? { ...el, isChecked: !el.isChecked } : el
+        value === el.name ? { ...el, isChecked: !el.isChecked } : el
       ))
       return { ...prev, addons }
     })
@@ -31,10 +31,12 @@ const Addons: FC<Props> = ({ setState, state }) => {
           <input
             id={el.id}
             type='checkbox'
-            name={el.name}
+            name={'addons'}
+            value={el.name}
             checked={el.isChecked}
             onChange={handleChange}
             className='appearance-none'
+            required
           />
           <img
             src={checkmark}
